@@ -6,7 +6,7 @@ metadata:
   name: "{{ .Values.name }}-postgresql"
 spec:
   ports:
-  - name: mongo
+  - name: postgresql
     nodePort: 0
     port: 5432
     protocol: TCP

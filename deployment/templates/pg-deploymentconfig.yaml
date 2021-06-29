@@ -2,17 +2,19 @@ apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
   labels:
-    app: "{{ .Values.name }}-postgresql"
-  name: "{{ .Values.name }}-postgresql"
+    app: "{{ .Values.name }}"
+    app.kubernetes.io/instance: "{{ .Values.name }}"
 spec:
   replicas: 1
   selector:
+    app: "{{ .Values.name }}-postgresql"
     deploymentconfig: "{{ .Values.name }}-postgresql"
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
+        app: "{{ .Values.name }}-postgresql"
         deploymentconfig: "{{ .Values.name }}-postgresql"
     spec:
       containers:
